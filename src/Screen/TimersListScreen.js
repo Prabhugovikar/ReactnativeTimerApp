@@ -36,8 +36,7 @@ export default function TimersListScreen({ navigation }) {
 
 
   const groupedTimers = timers.reduce((acc, timer) => {
-    // Normalize category name to lowercase
-    const category = timer.category.toLowerCase(); // You can use .toUpperCase() if you prefer all caps
+    const category = timer.category.toLowerCase(); 
   
     acc[category] = acc[category] || [];
     acc[category].push(timer);
@@ -105,17 +104,15 @@ export default function TimersListScreen({ navigation }) {
     await AsyncStorage.setItem("history", JSON.stringify([...history, newHistoryItem]));
     setCompletedTimerName(completedTimer.name);
     setModalVisible(true);
-    
-    // Use timersRef.current to get the latest timers
     const updatedTimers = timersRef.current.filter((timer) => timer.id !== completedTimer.id);
-    await saveTimers(updatedTimers); // Ensure saveTimers is awaited
+    await saveTimers(updatedTimers); 
   };
   
 
   const saveTimers = async (updatedTimers) => {
     await AsyncStorage.setItem("timers", JSON.stringify(updatedTimers));
     setTimers(updatedTimers);
-    timersRef.current = updatedTimers; // Keep the ref in sync
+    timersRef.current = updatedTimers;
   };
 
   const startAllTimers = () => {
@@ -186,7 +183,7 @@ export default function TimersListScreen({ navigation }) {
   useFocusEffect(
     React.useCallback(() => {
       setMenuOpen(false);
-      animation.setValue(0); // Reset animation
+      animation.setValue(0);
     }, [])
   );
 
@@ -437,7 +434,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
   },
   modalContainer: {
     width: 300,
